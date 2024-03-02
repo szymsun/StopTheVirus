@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class WindowBackend : App
 {
     public AppOnDock appIconOnDock;
@@ -13,8 +13,16 @@ public class WindowBackend : App
     public Vector2 startPlace;
 
 
-    private Vector2 _whereWasTheWindow;
+    private RectTransform _whereWasTheWindow;
     private AppWindowState _lastState;
+
+    
+    
+    protected virtual void Start()
+    {
+        base.Start();
+        _whereWasTheWindow = new RectTransform();
+    }
     
     public override void RunApp()
     {
@@ -33,16 +41,22 @@ public class WindowBackend : App
         
     public void MaximizeWindow()
     {
-        _whereWasTheWindow = windowObject.localPosition;
-        windowObject.localPosition = new Vector2(0,0);
+        _lastState = appWindowState;
+        _whereWasTheWindow = windowObject;
+        windowObject.anchorMax = desktopRoot.anchorMax;
+        windowObject.anchorMin = desktopRoot.anchorMin;
+        windowObject.localPosition = desktopRoot.localPosition;
         windowObject.sizeDelta = desktopRoot.sizeDelta;
         appWindowState = AppWindowState.Maximized;
     }
 
     public void UnmaximizeWindow()
     {
-        windowObject.sizeDelta = windowSize;
-        windowObject.localPosition = _whereWasTheWindow;
+        _lastState = appWindowState;
+        windowObject.anchorMax = _whereWasTheWindow.anchorMax;
+        windowObject.anchorMin = _whereWasTheWindow.anchorMin;
+        windowObject.localPosition = _whereWasTheWindow.localPosition;
+        windowObject.sizeDelta = _whereWasTheWindow.sizeDelta;
         appWindowState = AppWindowState.Normal;
     }
     

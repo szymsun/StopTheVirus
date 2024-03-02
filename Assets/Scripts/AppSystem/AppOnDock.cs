@@ -8,6 +8,16 @@ public class AppOnDock : MonoBehaviour
 {
     public App app;
     public Image appRunningIndicator;
+
+    public RectTransform GetLocalPosition()
+    {
+        RectTransform tr = GetComponent<RectTransform>();
+        if (tr != null)
+        {
+            return tr;
+        }
+        else { return null; }
+    }
     
     public void ClickCallback()
     {

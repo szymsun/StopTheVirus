@@ -205,8 +205,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: App, Assembly-CSharp
+      - m_Target: {fileID: 752476306}
+        m_TargetAssemblyTypeName: PanelBackend, Assembly-CSharp
         m_MethodName: SwitchBetweenOpenAndClosed
         m_Mode: 1
         m_Arguments:
@@ -217,9 +217,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1388506271}
-        m_TargetAssemblyTypeName: App, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1388506276}
+        m_TargetAssemblyTypeName: PanelBackend, Assembly-CSharp
+        m_MethodName: ChangeOpenState
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1482,14 +1482,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9540a000bfde0874390baac9acb6af8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appWindowState: 0
+  appWindowState: 1
   appType: 1
   isVisibleOnDock: 1
   isOpened: 0
-  appIconOnDock: {fileID: 0}
+  appIconOnDock: {fileID: 1321012504}
   windowObject: {fileID: 1593021391}
   desktopRoot: {fileID: 1711764501}
-  windowSize: {x: 0, y: 0}
+  windowSize: {x: 360, y: 380}
   startPlace: {x: 0, y: 0}
 --- !u!1 &1112268686
 GameObject:
@@ -1700,9 +1700,9 @@ RectTransform:
   - {fileID: 536298235}
   m_Father: {fileID: 1125988608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 11.992839, y: -14}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1171207491
@@ -1748,7 +1748,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1171207492}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1593021392}
+        m_TargetAssemblyTypeName: Window, Assembly-CSharp
+        m_MethodName: MinimizeSwitch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1171207492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2102,7 +2114,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1321012502}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1321012504}
+        m_TargetAssemblyTypeName: AppOnDock, Assembly-CSharp
+        m_MethodName: ClickCallback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1321012502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2281,9 +2305,9 @@ RectTransform:
   - {fileID: 1902043479}
   m_Father: {fileID: 1125988608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 35.978516, y: -14}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1391117207
@@ -2329,7 +2353,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1391117208}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1593021392}
+        m_TargetAssemblyTypeName: Window, Assembly-CSharp
+        m_MethodName: MaximizeSwitch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1391117208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2489,6 +2525,7 @@ MonoBehaviour:
   isVisibleOnDock: 0
   isOpened: 0
   appsOnDock: []
+  focusedImg: {fileID: 0}
 --- !u!1 &1513997792
 GameObject:
   m_ObjectHideFlags: 0
@@ -2573,13 +2610,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1593021391}
+  - component: {fileID: 1593021392}
   m_Layer: 5
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1593021391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2599,8 +2637,21 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -360, y: -92}
-  m_SizeDelta: {x: 362.3272, y: 376.7801}
+  m_SizeDelta: {x: 360, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1593021392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593021390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27b6ba2aee90214eae6b10b156ce678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backend: {fileID: 1107104954}
 --- !u!1 &1655359463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,7 +2990,7 @@ GameObject:
   - component: {fileID: 2044003142}
   - component: {fileID: 2044003141}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3036,9 +3087,9 @@ RectTransform:
   - {fileID: 894370810}
   m_Father: {fileID: 1125988608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 59.964195, y: -14}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2115280581
@@ -3084,7 +3135,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2115280582}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1593021392}
+        m_TargetAssemblyTypeName: Window, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2115280582
 MonoBehaviour:
   m_ObjectHideFlags: 0

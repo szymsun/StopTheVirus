@@ -46,9 +46,4 @@ public class App : MonoBehaviour
     {
         
     }
-    
-    protected virtual void OnMouseDown()
-    {
-        Manager.FocusedApp = GetComponent<App>();
-    }
 }
