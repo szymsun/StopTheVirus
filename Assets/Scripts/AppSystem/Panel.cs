@@ -33,7 +33,7 @@ public class Panel : App
 
     protected override void OnAppFocusChanged()
     {
-        if (_manager.FocusedApp != this)
+        if (Manager.FocusedApp != this)
         {
             base.OnAppFocusChanged();
             SwitchBetweenOpenAndClosed();

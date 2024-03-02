@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Window : App
+public class WindowBackend : App
 {
     public AppOnDock appIconOnDock;
     public RectTransform windowObject;
@@ -14,8 +14,12 @@ public class Window : App
 
 
     private Vector2 _whereWasTheWindow;
+    private AppWindowState _lastState;
+    
     public override void RunApp()
     {
+        windowObject.gameObject.SetActive(true);
+        isOpened = true;
         windowObject.localPosition = startPlace;
         windowObject.sizeDelta = windowSize;
         appWindowState = AppWindowState.Normal;
@@ -23,6 +27,7 @@ public class Window : App
 
     public override void StopApp()
     {
+        windowObject.gameObject.SetActive(false);
         
     }
         
@@ -40,28 +45,26 @@ public class Window : App
         windowObject.localPosition = _whereWasTheWindow;
         appWindowState = AppWindowState.Normal;
     }
-
+    
     public void MinimizeWindow()
     {
+        _lastState = appWindowState;
         windowObject.gameObject.SetActive(false);
+        appWindowState = AppWindowState.Minimized;
     }
 
     public void UnMinimizeWindow()
     {
         windowObject.gameObject.SetActive(true);
+        appWindowState = _lastState;
     }
 
     public void CloseWindow() => StopApp();
 
-    private void OnMouseDown()
-    {
-        _manager.FocusedApp = this;
-    }
-
     protected override void OnAppFocusChanged()
     {
         base.OnAppFocusChanged();
-        if (_manager.FocusedApp == this)
+        if (Manager.FocusedApp == this)
         {
             
         }

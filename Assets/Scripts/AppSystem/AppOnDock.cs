@@ -15,17 +15,17 @@ public class AppOnDock : MonoBehaviour
             app.RunApp();
         else
         {
-            Window window = app.GetComponent<Window>();
+            WindowBackend windowBackend = app.GetComponent<WindowBackend>();
             switch (app.appWindowState)
             {
                 case AppWindowState.Maximized:
-                    window.MaximizeWindow();
+                    windowBackend.MinimizeWindow();
                     break;
                 case AppWindowState.Minimized:
-                    window.UnMinimizeWindow();
+                    windowBackend.UnMinimizeWindow();
                     break;
                 case AppWindowState.Normal:
-                    window.MinimizeWindow();
+                    windowBackend.MinimizeWindow();
                     break;
             }
         }

@@ -9,9 +9,26 @@ public class Dock : App
     
     private void Start()
     {
+        base.Start();
         isVisibleOnDock = false;
     }
-    
-    
-    
+
+    protected override void OnAppFocusChanged()
+    {
+        base.OnAppFocusChanged();
+        if (Manager.FocusedApp == this)
+        {
+            
+        }
+    }
+
+    public void ShowFocusedAppOverlay()
+    {
+        
+    }
+
+    public void HideOverlay()
+    {
+        
+    }
 }

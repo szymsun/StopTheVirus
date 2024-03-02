@@ -29,7 +29,6 @@ public class DesktopManager : MonoBehaviour
 
     void Start()
     {
-        
         FocusedApp = dock;
     }
         

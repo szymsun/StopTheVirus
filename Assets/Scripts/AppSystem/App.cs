@@ -25,11 +25,11 @@ public class App : MonoBehaviour
     public bool isVisibleOnDock;
     public bool isOpened;
 
-    protected DesktopManager _manager;    
+    protected DesktopManager Manager;    
     protected virtual void Start()
     {
-        _manager = FindObjectOfType<DesktopManager>();
-        _manager.appFocusChangeEvent.AddListener(OnAppFocusChanged);
+        Manager = FindObjectOfType<DesktopManager>();
+        Manager.appFocusChangeEvent.AddListener(OnAppFocusChanged);
     }
 
     public virtual void RunApp()
@@ -49,6 +49,6 @@ public class App : MonoBehaviour
     
     protected virtual void OnMouseDown()
     {
-        _manager.FocusedApp = GetComponent<App>();
+        Manager.FocusedApp = GetComponent<App>();
     }
 }
