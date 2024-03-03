@@ -35,7 +35,7 @@ public class Dock : App
         if (windowBackend != null)
         {
             focusedImg.gameObject.SetActive(true);
-            focusedImg.rectTransform.localPosition = windowBackend.appIconOnDock.GetLocalPosition().localPosition;
+            focusedImg.rectTransform.localPosition = windowBackend.appIconOnDock.GetLocalPosition().anchoredPosition;
         }
     }
         

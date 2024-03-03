@@ -18,9 +18,12 @@ public class DesktopManager : MonoBehaviour
             if (value != null && _focusedApp != value)
             {
                 appFocusChangeEvent.Invoke();
+                
+                
             }
 
             _focusedApp = value;
+            
             
         }
     }
