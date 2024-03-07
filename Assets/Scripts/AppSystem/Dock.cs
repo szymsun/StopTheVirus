@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class Dock : App
@@ -31,12 +28,10 @@ public class Dock : App
 
     public void ShowFocusedAppOverlay()
     {
-        WindowBackend windowBackend = Manager.FocusedApp.GetComponent<WindowBackend>();
-        if (windowBackend != null)
-        {
-            focusedImg.gameObject.SetActive(true);
-            focusedImg.rectTransform.localPosition = windowBackend.appIconOnDock.GetLocalPosition().localPosition;
-        }
+        var windowBackend = Manager.FocusedApp.GetComponent<WindowBackend>();
+        if (windowBackend == null) return;
+        focusedImg.gameObject.SetActive(true);
+        focusedImg.rectTransform.localPosition = windowBackend.appIconOnDock.GetLocalPosition().localPosition;
     }
         
 

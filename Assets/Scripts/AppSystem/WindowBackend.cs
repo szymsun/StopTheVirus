@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+
 public class WindowBackend : App
 {
     public AppOnDock appIconOnDock;
@@ -82,14 +78,10 @@ public class WindowBackend : App
         appWindowState = _lastState;
     }
 
-    public void CloseWindow() => StopApp();
-
     protected override void OnAppFocusChanged()
     {
         base.OnAppFocusChanged();
         if (Manager.FocusedApp == this)
-        {
             windowObject.transform.SetAsLastSibling();
-        }
     }
 }

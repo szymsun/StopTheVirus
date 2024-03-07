@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,12 +14,11 @@ public class CursorInterraction : MonoBehaviour
     
     public RectTransform cursorTracker;
     
-    [SerializeField]  GraphicRaycaster m_Raycaster;
-    PointerEventData m_PointerEventData;
-    [SerializeField] EventSystem m_EventSystem;
-    [SerializeField] RectTransform canvasRect;
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private GraphicRaycaster mouseRaycaster;
+    private PointerEventData _mousePointerEventData;
+    [SerializeField] private EventSystem mouseEventSystem;
+    
+    private void Update()
     {
         if(Input.GetKey(KeyCode.Mouse0)) CursorClick();
         if (Input.GetKeyUp(KeyCode.Mouse0)) CursorUnclick();
@@ -27,56 +26,73 @@ public class CursorInterraction : MonoBehaviour
 
     private GameObject _temp;
     private WindowTopBar _win;
-    
-    void CursorClick()
+
+    private void CursorClick()
     {
         if (_isHoldingWindow)
-        {
             cursorTracker.localPosition = Input.mousePosition;
-        }
         else
         {
-            //Set up the new Pointer Event
-            m_PointerEventData = new PointerEventData(m_EventSystem);
-            //Set the Pointer Event Position to that of the game object
-            m_PointerEventData.position = Input.mousePosition;
- 
-            //Create a list of Raycast Results
+            _mousePointerEventData = new PointerEventData(mouseEventSystem);
+            _mousePointerEventData.position = Input.mousePosition;
+            
             List<RaycastResult> results = new List<RaycastResult>();
- 
-            //Raycast using the Graphics Raycaster and mouse click position
-            m_Raycaster.Raycast(m_PointerEventData, results);
+            
+            mouseRaycaster.Raycast(_mousePointerEventData, results);
 
-            if (results[0].gameObject.CompareTag(windowBarMask))
+            try
+
             {
-                if (_temp != null)
+                if (results[0].gameObject.CompareTag(windowBarMask))
                 {
-                    cursorTracker.localPosition = Input.mousePosition;
-                    _win = results[0].gameObject.GetComponent<WindowTopBar>();
-                    _win.window.transform.SetParent(_temp.transform);
-                    _isHoldingWindow = true;
+                    if (_temp != null)
+                    {
+                        cursorTracker.localPosition = Input.mousePosition;
+                        _win = results[0].gameObject.GetComponent<WindowTopBar>();
+
+                        if (_win.window.backend.appWindowState == AppWindowState.Maximized)
+                        {
+                            _win.window.backend.UnmaximizeWindow();
+                            _win.window.transform.SetParent(_temp.transform);
+                            _isHoldingWindow = true;
+                        }
+                        else
+                        {
+                            _win.window.transform.SetParent(_temp.transform);
+                            _isHoldingWindow = true;
+                        }
+
+                    }
+                    else
+                    {
+                        cursorTracker.localPosition = Input.mousePosition;
+                        _temp = cursorTracker.gameObject;
+                        _win = results[0].gameObject.GetComponent<WindowTopBar>();
+
+                        if (_win.window.backend.appWindowState == AppWindowState.Maximized)
+                            _win.window.backend.UnmaximizeWindow();
+
+                        _win.window.gameObject.transform.SetParent(_temp.transform);
+                        _isHoldingWindow = true;
+                    }
                 }
-                else
-                {
-                    cursorTracker.localPosition = Input.mousePosition;
-                    _temp = cursorTracker.gameObject;
-                    _win = results[0].gameObject.GetComponent<WindowTopBar>();
-                    _win.window.transform.SetParent(_temp.transform);
-                    _isHoldingWindow = true;
-                }
-            
-            
-            
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                
             }
         }
         
         
     }
 
-    void CursorUnclick()
+    private void CursorUnclick()
     {
-        _temp = null;
-        _isHoldingWindow = false;
-        _win.window.gameObject.transform.SetParent(windowRoot);
+        if (_temp != null)
+        {
+            _temp = null;
+            _isHoldingWindow = false;
+            _win.window.gameObject.transform.SetParent(windowRoot);
+        }
     }
 }

@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 public class AppOnDock : MonoBehaviour
 {
@@ -11,15 +7,8 @@ public class AppOnDock : MonoBehaviour
 
     public RectTransform GetLocalPosition()
     {
-        RectTransform tr = GetComponent<RectTransform>();
-        if (tr != null)
-        {
-            return tr;
-        }
-        else
-        {
-            return null;
-        }
+        var tr = GetComponent<RectTransform>();
+        return tr != null ? tr : null;
     }
 
     public void ClickCallback()

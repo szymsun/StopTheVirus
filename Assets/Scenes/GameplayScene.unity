@@ -11735,9 +11735,8 @@ MonoBehaviour:
   windowBarMask: WindowTop
   windowRoot: {fileID: 1711764501}
   cursorTracker: {fileID: 1286044537}
-  m_Raycaster: {fileID: 457896013}
-  m_EventSystem: {fileID: 218951132}
-  canvasRect: {fileID: 417454219}
+  mouseRaycaster: {fileID: 457896013}
+  mouseEventSystem: {fileID: 218951132}
 --- !u!1 &500814142
 GameObject:
   m_ObjectHideFlags: 0
@@ -15939,7 +15938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08588ae114c8f5641a9f25528c0d030a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  window: {fileID: 1593021391}
+  window: {fileID: 1593021392}
 --- !u!1 &1265963268
 GameObject:
   m_ObjectHideFlags: 0
@@ -16081,7 +16080,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286044537}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: CursorPlaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17707,7 +17706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08588ae114c8f5641a9f25528c0d030a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  window: {fileID: 1613107922}
+  window: {fileID: 1613107923}
 --- !u!1 &1902043478
 GameObject:
   m_ObjectHideFlags: 0
