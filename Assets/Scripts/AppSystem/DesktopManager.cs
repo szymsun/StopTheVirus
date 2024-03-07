@@ -19,7 +19,6 @@ public class DesktopManager : MonoBehaviour
             {
                 appFocusChangeEvent.Invoke();
                 
-                
             }
 
             _focusedApp = value;

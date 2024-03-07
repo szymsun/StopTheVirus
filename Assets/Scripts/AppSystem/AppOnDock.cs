@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class AppOnDock : MonoBehaviour
 {
     public App app;
-    public Image appRunningIndicator;
+    public GameObject appRunningIndicator;
 
     public RectTransform GetLocalPosition()
     {

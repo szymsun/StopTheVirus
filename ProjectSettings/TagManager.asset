@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - WindowTop
+  - 2Dcamera
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - 2DGame
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
