@@ -25,7 +25,7 @@ public class CursorInterraction : MonoBehaviour
     }
 
     private GameObject _temp;
-    private WindowTopBar _win;
+    private WindowElement _win;
 
     private void CursorClick()
     {
@@ -48,7 +48,7 @@ public class CursorInterraction : MonoBehaviour
                     if (_temp != null)
                     {
                         cursorTracker.localPosition = Input.mousePosition;
-                        _win = results[0].gameObject.GetComponent<WindowTopBar>();
+                        _win = results[0].gameObject.GetComponent<WindowElement>();
 
                         if (_win.window.backend.appWindowState == AppWindowState.Maximized)
                         {
@@ -67,7 +67,7 @@ public class CursorInterraction : MonoBehaviour
                     {
                         cursorTracker.localPosition = Input.mousePosition;
                         _temp = cursorTracker.gameObject;
-                        _win = results[0].gameObject.GetComponent<WindowTopBar>();
+                        _win = results[0].gameObject.GetComponent<WindowElement>();
 
                         if (_win.window.backend.appWindowState == AppWindowState.Maximized)
                             _win.window.backend.UnmaximizeWindow();
